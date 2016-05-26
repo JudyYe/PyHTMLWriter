@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/home/rohit/Software/utils/PyHTMLWriter/src');
+sys.path.append('/home/dragon123/Affordances/PyHTMLWriter/src');
 from Element import Element
 from TableRow import TableRow
 from Table import Table
@@ -15,7 +15,8 @@ for r in range(100):
     for e in range(10):
         e = Element()
         # X, Y, W, H
-        e.addImg("http://upload.wikimedia.org/wikipedia/commons/d/db/A_small_forest_clearing_-_geograph.org.uk_-_540354.jpg", [], [20,20,100,150])
+        #e.addImg("http://upload.wikimedia.org/wikipedia/commons/d/db/A_small_forest_clearing_-_geograph.org.uk_-_540354.jpg", [], [20,20,100,150])
+        e.addImg("http://upload.wikimedia.org/wikipedia/commons/d/db/A_small_forest_clearing_-_geograph.org.uk_-_540354.jpg")
         
         r.addElement(e)
     t.addRow(r)
