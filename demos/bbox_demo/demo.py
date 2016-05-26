@@ -1,23 +1,34 @@
 import sys
-sys.path.append('/home/dragon123/Affordances/PyHTMLWriter/src');
+sys.path.append('../../src');
 from Element import Element
 from TableRow import TableRow
 from Table import Table
 from TableWriter import TableWriter
 
 t = Table()
-print "NOTE that this is buggy still... will make images at the std size of canvas, and will put the square at absolute values mentioned"
-for r in range(100):
+srcpath = 'http://ladoga.graphics.cs.cmu.edu/xiaolonw/affordance_TBBT/pose_det_vis/' 
+image_set_file = 'paths.txt'
+with open(image_set_file) as f:
+    image_index = [x.strip() for x in f.readlines()]
+
+trajnum = len(image_index) 
+
+for r in range(trajnum):
+    idx = r
     if r == 0:
         r = TableRow(isHeader = True)
     else:
         r = TableRow()
-    for e in range(10):
+    now_path = image_index[idx]
+    now_path =  srcpath + now_path  
+    e = Element()
+    e.addTxt(image_index[idx])
+    r.addElement(e)
+    for e in range(30):
+        idx2 = e * 5 + 1
         e = Element()
-        # X, Y, W, H
-        #e.addImg("http://upload.wikimedia.org/wikipedia/commons/d/db/A_small_forest_clearing_-_geograph.org.uk_-_540354.jpg", [], [20,20,100,150])
-        e.addImg("http://upload.wikimedia.org/wikipedia/commons/d/db/A_small_forest_clearing_-_geograph.org.uk_-_540354.jpg")
-        
+        tpath = now_path + '{0:07d}'.format(idx2) + '.jpg'  
+        e.addImg(tpath)
         r.addElement(e)
     t.addRow(r)
 tw = TableWriter(t, 'out')
